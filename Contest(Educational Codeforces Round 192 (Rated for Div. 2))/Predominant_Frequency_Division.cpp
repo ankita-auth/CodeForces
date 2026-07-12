@@ -1,150 +1,79 @@
-// #include <bits/stdc++.h>
-// using namespace std;
-// int main(){
-//     unsigned int t;
-//     cin>>t;
-//     int arr[t];
-//     int z=0;
-//     while(t--){
-//         z++;
-//         unsigned int n;
-//         cin>>n;
-//         if(n<3){
-//             cout<<"Wrong Input";
-//             break;
-//         }
-//         int ar[n];
-//         int o=0,t=0,th=0,l=-1,m=-1;
-//         bool b=false;
-//         for(int i=0;i<n;i++){
-//             cin>>ar[i];
-//             if(ar[i]>3  || ar[i]<1){
-//                  cout<<"wrong Input";
-//                  return 0;
-//             }
-//             if(ar[i]==1){
-//                 o++;
-//             }
-//             else if(ar[i]==2){
-//                 t++;
-
-//             }
-//             else{
-//                 th++;
-//             }
-//             if((o>=(t+th)) && m==-1 && l==-1){
-//                 l=i;
-//                 o=0,t=0,th=0;
-//             }
-//             else if(((o+t)>=th) && l!=-1 && m==-1 ){
-//                 m=i;
-//             }
-//             else if((m<(n-1)) && l!=-1 && m!=-1){
-//                 b=true;
-
-//             }
-//         }
-//         if(b){
-//             arr[z-1]=1;
-//         }
-//         else{
-//             arr[z-1]=0;
-//         }
-
-        
-        
-       
-
-
-//     }
-//     for(int i=0;i<z;i++){
-//         if(arr[i]){
-//             cout<<"Yes"<<endl;
-
-//         }else{
-//             cout<<"No"<<endl;
-//         }
-//     }
-//     return 0;
-
-// }
-
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
-int count(int a,int b,int arr[],int c){
-        int count=0;
-        for(int i=a;i<=b;i++){
-            if(arr[i]==c){
-                count++;
-            }
-        }
-        return count;
-}
+
 int main(){
     unsigned int t;
-    cin>>t;
-    int array[t];
-    int z=-1;
-    bool b=false;
+    
+    int z = 0;
+    cin >> t;
+    int c[t];
     while(t--){
-        b=false;
-       
         z++;
         unsigned int n;
-        cin>>n;
-        if(n<3){
+        cin >> n;
+        if(n < 3){
             cout<<"Wrong Input";
             break;
         }
-        int ar[n];
-         for(int i=0;i<n;i++){
-            cin>>ar[i];
-            if(ar[i]>3  || ar[i]<1){
-                 cout<<"wrong Input";
-                 return 0;
+        int arr[n];
+        int count1= 0, count2 = 0, count3 = 0;
+        int left=-1, middle=-1;
+        bool a = false;
+        
+        
+        for(int i=0; i<n; i++){
+            cin >> arr[i];
+            if(arr[i] > 3 || arr[i] < 1){
+                cout << "Wrong Input";
+                return 0;
             }
-         }     
-        for(int i=0;i<=n-3;i++){
-            for(int j=i+1;j<=n-2;j++){
-                int count1=count(0,i,ar,1);
-                int count2=count(0,i,ar,2);
-                int count3=count(0,i,ar,3);
-                bool l = (count1 >= count2 + count3);
-                
-                count1=count(i+1,j,ar,1);
-                count2=count(i+1,j,ar,2);
-                count3=count(i+1,j,ar,3);
-                bool m = (count1 + count2 >= count3);
-                if(l && m){
-                    b=true;
-                    break;
-                }
+
+            if(arr[i] == 1){
+                count1++;
+            }
+            else if(arr[i] == 2){
+                count2++;
+            }
+            else{
+                count3++;
+            }
+
+            if((count1 >= count2 + count3) && left == -1 && middle == -1){
+                left = i;
+                count1 =0,count2=0,count3=0;
                 
             }
+            else if((count1 + count2 >= count3) && left != -1 && middle == -1){
+                middle = i;
+                count1 =0,count2=0,count3=0;
+            }
+            else if(((n-1) > middle ) && middle != -1 && left != -1){
+                a = true;
+
+            }
+            
         }
-        if(b){
-            array[z]=1;
+        if (a){
+            c[z-1] = 1;
         }
         else{
-            array[z]=0;
+            c[z-1] = 0;
         }
-
-
-
-
+    
+        //left-> count1 >= count2 + count3
+        //middle-> count1 + count2 >= count3
+        //right-> non-empty
 
     }
-    for(int i=0;i<=z;i++){
-        if(array[i]){
-            cout<<"Yes"<<endl;
+    for(int i=0; i<z; i++){
+        if(c[i]){
+            cout<<"YES" << endl;
         }
         else{
-            cout<<"No"<<endl;
+            cout<<"NO << endl";
         }
+
     }
-
-
-
 
     return 0;
 }
