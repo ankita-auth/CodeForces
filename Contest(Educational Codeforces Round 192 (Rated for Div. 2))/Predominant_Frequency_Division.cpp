@@ -1,150 +1,181 @@
-// #include <bits/stdc++.h>
-// using namespace std;
-// int main(){
-//     unsigned int t;
-//     cin>>t;
-//     int arr[t];
-//     int z=0;
-//     while(t--){
-//         z++;
-//         unsigned int n;
-//         cin>>n;
-//         if(n<3){
-//             cout<<"Wrong Input";
-//             break;
-//         }
-//         int ar[n];
-//         int o=0,t=0,th=0,l=-1,m=-1;
-//         bool b=false;
-//         for(int i=0;i<n;i++){
-//             cin>>ar[i];
-//             if(ar[i]>3  || ar[i]<1){
-//                  cout<<"wrong Input";
-//                  return 0;
-//             }
-//             if(ar[i]==1){
-//                 o++;
-//             }
-//             else if(ar[i]==2){
-//                 t++;
-
-//             }
-//             else{
-//                 th++;
-//             }
-//             if((o>=(t+th)) && m==-1 && l==-1){
-//                 l=i;
-//                 o=0,t=0,th=0;
-//             }
-//             else if(((o+t)>=th) && l!=-1 && m==-1 ){
-//                 m=i;
-//             }
-//             else if((m<(n-1)) && l!=-1 && m!=-1){
-//                 b=true;
-
-//             }
-//         }
-//         if(b){
-//             arr[z-1]=1;
-//         }
-//         else{
-//             arr[z-1]=0;
-//         }
-
-        
-        
-       
-
-
-//     }
-//     for(int i=0;i<z;i++){
-//         if(arr[i]){
-//             cout<<"Yes"<<endl;
-
-//         }else{
-//             cout<<"No"<<endl;
-//         }
-//     }
-//     return 0;
-
-// }
+//O(n3)
 
 #include <bits/stdc++.h>
 using namespace std;
-int count(int a,int b,int arr[],int c){
-        int count=0;
-        for(int i=a;i<=b;i++){
-            if(arr[i]==c){
-                count++;
+
+int main() {
+
+    int t;
+    cin >> t;
+
+    while (t--) {
+
+        int n;
+        cin >> n;
+
+        vector<int> a(n);
+
+        for (int i = 0; i < n; i++)
+            cin >> a[i];
+
+        bool ok = false;
+
+        for (int left = 0; left <= n - 3 && !ok; left++) {
+
+            int one = 0, two = 0, three = 0;
+
+            // Count LEFT
+            for (int i = 0; i <= left; i++) {
+                if (a[i] == 1) one++;
+                else if (a[i] == 2) two++;
+                else three++;
             }
-        }
-        return count;
-}
-int main(){
-    unsigned int t;
-    cin>>t;
-    int array[t];
-    int z=-1;
-    bool b=false;
-    while(t--){
-        b=false;
-       
-        z++;
-        unsigned int n;
-        cin>>n;
-        if(n<3){
-            cout<<"Wrong Input";
-            break;
-        }
-        int ar[n];
-         for(int i=0;i<n;i++){
-            cin>>ar[i];
-            if(ar[i]>3  || ar[i]<1){
-                 cout<<"wrong Input";
-                 return 0;
-            }
-         }     
-        for(int i=0;i<=n-3;i++){
-            for(int j=i+1;j<=n-2;j++){
-                int count1=count(0,i,ar,1);
-                int count2=count(0,i,ar,2);
-                int count3=count(0,i,ar,3);
-                bool l = (count1 >= count2 + count3);
-                
-                count1=count(i+1,j,ar,1);
-                count2=count(i+1,j,ar,2);
-                count3=count(i+1,j,ar,3);
-                bool m = (count1 + count2 >= count3);
-                if(l && m){
-                    b=true;
-                    break;
+
+            if (one < two + three)
+                continue;
+
+            for (int mid = left + 1; mid <= n - 2 && !ok; mid++) {
+
+                one = two = three = 0;
+
+                // Count MIDDLE
+                for (int i = left + 1; i <= mid; i++) {
+                    if (a[i] == 1) one++;
+                    else if (a[i] == 2) two++;
+                    else three++;
                 }
-                
+
+                if (one + two >= three)
+                    ok = true;
             }
         }
-        if(b){
-            array[z]=1;
-        }
-        else{
-            array[z]=0;
-        }
 
-
-
-
-
+        cout << (ok ? "YES" : "NO") << '\n';
     }
-    for(int i=0;i<=z;i++){
-        if(array[i]){
-            cout<<"Yes"<<endl;
+}
+
+
+
+//O(n2)
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+
+    int t;
+    cin >> t;
+
+    while (t--) {
+
+        int n;
+        cin >> n;
+
+        vector<int> a(n);
+
+        vector<int> p1(n + 1, 0);
+        vector<int> p2(n + 1, 0);
+        vector<int> p3(n + 1, 0);
+
+        for (int i = 0; i < n; i++) {
+
+            cin >> a[i];
+
+            p1[i + 1] = p1[i];
+            p2[i + 1] = p2[i];
+            p3[i + 1] = p3[i];
+
+            if (a[i] == 1)
+                p1[i + 1]++;
+            else if (a[i] == 2)
+                p2[i + 1]++;
+            else
+                p3[i + 1]++;
         }
-        else{
-            cout<<"No"<<endl;
+
+        bool ok = false;
+
+        for (int left = 0; left <= n - 3 && !ok; left++) {
+
+            int one = p1[left + 1];
+            int two = p2[left + 1];
+            int three = p3[left + 1];
+
+            if (one < two + three)
+                continue;
+
+            for (int mid = left + 1; mid <= n - 2 && !ok; mid++) {
+
+                one = p1[mid + 1] - p1[left + 1];
+                two = p2[mid + 1] - p2[left + 1];
+                three = p3[mid + 1] - p3[left + 1];
+
+                if (one + two >= three)
+                    ok = true;
+            }
         }
+
+        cout << (ok ? "YES" : "NO") << '\n';
+    }
+}
+
+//O(n)
+
+#include <bits/stdc++.h>
+using namespace std;
+
+const int INF = 1e9;
+
+void solve() {
+
+    int n;
+    cin >> n;
+
+    vector<int> a(n);
+
+    for (int i = 0; i < n; i++)
+        cin >> a[i];
+
+    vector<int> pref1(n + 1, 0);
+    vector<int> pref2(n + 1, 0);
+
+    for (int i = 0; i < n; i++) {
+
+        if (a[i] == 1)
+            pref1[i + 1] = pref1[i] + 1;
+        else
+            pref1[i + 1] = pref1[i] - 1;
+
+        if (a[i] == 3)
+            pref2[i + 1] = pref2[i] - 1;
+        else
+            pref2[i + 1] = pref2[i] + 1;
     }
 
+    int mn = INF;
 
+    for (int i = 1; i < n; i++) {
 
+        if (pref2[i] >= mn) {
+            cout << "YES\n";
+            return;
+        }
 
-    return 0;
+        if (pref1[i] >= 0)
+            mn = min(mn, pref2[i]);
+    }
+
+    cout << "NO\n";
+}
+
+int main() {
+
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t;
+    cin >> t;
+
+    while (t--)
+        solve();
 }
