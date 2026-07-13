@@ -1,123 +1,123 @@
-//O(n3)
+// O(n3)
 
-#include <bits/stdc++.h>
-using namespace std;
+// #include <bits/stdc++.h>
+// using namespace std;
 
-int main() {
+// int main() {
 
-    int t;
-    cin >> t;
+//     int t;
+//     cin >> t;
 
-    while (t--) {
+//     while (t--) {
 
-        int n;
-        cin >> n;
+//         int n;
+//         cin >> n;
 
-        vector<int> a(n);
+//         vector<int> a(n);
 
-        for (int i = 0; i < n; i++)
-            cin >> a[i];
+//         for (int i = 0; i < n; i++)
+//             cin >> a[i];
 
-        bool ok = false;
+//         bool ok = false;
 
-        for (int left = 0; left <= n - 3 && !ok; left++) {
+//         for (int left = 0; left <= n - 3 && !ok; left++) {
 
-            int one = 0, two = 0, three = 0;
+//             int one = 0, two = 0, three = 0;
 
-            // Count LEFT
-            for (int i = 0; i <= left; i++) {
-                if (a[i] == 1) one++;
-                else if (a[i] == 2) two++;
-                else three++;
-            }
+//             // Count LEFT
+//             for (int i = 0; i <= left; i++) {
+//                 if (a[i] == 1) one++;
+//                 else if (a[i] == 2) two++;
+//                 else three++;
+//             }
 
-            if (one < two + three)
-                continue;
+//             if (one < two + three)
+//                 continue;
 
-            for (int mid = left + 1; mid <= n - 2 && !ok; mid++) {
+//             for (int mid = left + 1; mid <= n - 2 && !ok; mid++) {
 
-                one = two = three = 0;
+//                 one = two = three = 0;
 
-                // Count MIDDLE
-                for (int i = left + 1; i <= mid; i++) {
-                    if (a[i] == 1) one++;
-                    else if (a[i] == 2) two++;
-                    else three++;
-                }
+//                 // Count MIDDLE
+//                 for (int i = left + 1; i <= mid; i++) {
+//                     if (a[i] == 1) one++;
+//                     else if (a[i] == 2) two++;
+//                     else three++;
+//                 }
 
-                if (one + two >= three)
-                    ok = true;
-            }
-        }
+//                 if (one + two >= three)
+//                     ok = true;
+//             }
+//         }
 
-        cout << (ok ? "YES" : "NO") << '\n';
-    }
-}
+//         cout << (ok ? "YES" : "NO") << '\n';
+//     }
+// }
 
 
 
-//O(n2)
+// O(n2)
 
-#include <bits/stdc++.h>
-using namespace std;
+// #include <bits/stdc++.h>
+// using namespace std;
 
-int main() {
+// int main() {
 
-    int t;
-    cin >> t;
+//     int t;
+//     cin >> t;
 
-    while (t--) {
+//     while (t--) {
 
-        int n;
-        cin >> n;
+//         int n;
+//         cin >> n;
 
-        vector<int> a(n);
+//         vector<int> a(n);
 
-        vector<int> p1(n + 1, 0);
-        vector<int> p2(n + 1, 0);
-        vector<int> p3(n + 1, 0);
+//         vector<int> p1(n + 1, 0);
+//         vector<int> p2(n + 1, 0);
+//         vector<int> p3(n + 1, 0);
 
-        for (int i = 0; i < n; i++) {
+//         for (int i = 0; i < n; i++) {
 
-            cin >> a[i];
+//             cin >> a[i];
 
-            p1[i + 1] = p1[i];
-            p2[i + 1] = p2[i];
-            p3[i + 1] = p3[i];
+//             p1[i + 1] = p1[i];
+//             p2[i + 1] = p2[i];
+//             p3[i + 1] = p3[i];
 
-            if (a[i] == 1)
-                p1[i + 1]++;
-            else if (a[i] == 2)
-                p2[i + 1]++;
-            else
-                p3[i + 1]++;
-        }
+//             if (a[i] == 1)
+//                 p1[i + 1]++;
+//             else if (a[i] == 2)
+//                 p2[i + 1]++;
+//             else
+//                 p3[i + 1]++;
+//         }
 
-        bool ok = false;
+//         bool ok = false;
 
-        for (int left = 0; left <= n - 3 && !ok; left++) {
+//         for (int left = 0; left <= n - 3 && !ok; left++) {
 
-            int one = p1[left + 1];
-            int two = p2[left + 1];
-            int three = p3[left + 1];
+//             int one = p1[left + 1];
+//             int two = p2[left + 1];
+//             int three = p3[left + 1];
 
-            if (one < two + three)
-                continue;
+//             if (one < two + three)
+//                 continue;
 
-            for (int mid = left + 1; mid <= n - 2 && !ok; mid++) {
+//             for (int mid = left + 1; mid <= n - 2 && !ok; mid++) {
 
-                one = p1[mid + 1] - p1[left + 1];
-                two = p2[mid + 1] - p2[left + 1];
-                three = p3[mid + 1] - p3[left + 1];
+//                 one = p1[mid + 1] - p1[left + 1];
+//                 two = p2[mid + 1] - p2[left + 1];
+//                 three = p3[mid + 1] - p3[left + 1];
 
-                if (one + two >= three)
-                    ok = true;
-            }
-        }
+//                 if (one + two >= three)
+//                     ok = true;
+//             }
+//         }
 
-        cout << (ok ? "YES" : "NO") << '\n';
-    }
-}
+//         cout << (ok ? "YES" : "NO") << '\n';
+//     }
+// }
 
 //O(n)
 
