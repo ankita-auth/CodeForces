@@ -67,63 +67,6 @@
 //     return 0;
 // }
 
-//--------------------X-----------------------------
-// #include <bits/stdc++.h>
-// using namespace std;
-
-// void solve() {
-//     int n, k;
-//     cin >> n >> k;
-
-//     vector<int> a(n);
-//     for (int i = 0; i < n; i++)
-//         cin >> a[i];
-
-//     // c[i] = number of blocks having frequency i
-//     vector<int> c(n + 1, 0);
-
-//     for (int i = 0; i < n;) {
-//         int j = i;
-//         while (j < n && a[j] == a[i])
-//             j++;
-
-//         c[j - i]++;
-//         i = j;
-//     }
-
-//     long long ans = 0;
-
-//     long long activeBlocks = 0;
-//     long long minimumLength = 0;
-
-//     for (int freq = n; freq >= 1; freq--) {
-
-//         activeBlocks += c[freq];
-
-//         minimumLength += activeBlocks;
-
-//         if (c[freq] > 0 &&
-//             k >= minimumLength &&
-//             (k - minimumLength) % activeBlocks == 0)
-//             ans++;
-//     }
-
-//     cout << ans << '\n';
-// }
-
-// int main() {
-//     ios::sync_with_stdio(false);
-//     cin.tie(nullptr);
-
-//     int t;
-//     cin >> t;
-
-//     while (t--)
-//         solve();
-// }
-// //https://codeforces.com/blog/entry/155047?utm_source=chatgpt.com
-
-
 //--------------------X---------------------
 #include <bits/stdc++.h>
 using namespace std;
