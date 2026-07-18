@@ -8,10 +8,10 @@ int main(){
     cin >> t;
     while(t--){
         int k;
+        //hello
         cin >> k;
         bool ok = false;
         int twice = 0;
-
         for(int i=0; i<k; i++){
             int x;
             cin >> x;
