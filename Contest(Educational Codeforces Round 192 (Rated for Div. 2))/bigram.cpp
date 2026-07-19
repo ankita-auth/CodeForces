@@ -9,6 +9,7 @@ int main(){
     while(t--){
         int k;
         //hello
+        //HELLO HII HII
         cin >> k;
         bool ok = false;
         int twice = 0;
