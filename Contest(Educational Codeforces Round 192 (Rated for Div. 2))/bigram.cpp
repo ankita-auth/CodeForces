@@ -10,6 +10,7 @@ int main(){
         int k;
         //hello
         //HELLO HII HII
+        //HELOO
         cin >> k;
         bool ok = false;
         int twice = 0;
