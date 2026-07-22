@@ -8,9 +8,8 @@ int main(){
     cin >> t;
     while(t--){
         int k;
-        //hello
-        //HELLO HII HII
-        //HELOO
+        //hellogyg
+        //huk
         cin >> k;
         bool ok = false;
         int twice = 0;
@@ -19,7 +18,7 @@ int main(){
             cin >> x;
             if(x >= 3){
                 ok = true; 
-            }
+            } 
             if(x == 2){
                 twice++;
             }
