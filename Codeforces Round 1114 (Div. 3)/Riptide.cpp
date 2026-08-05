@@ -37,24 +37,12 @@ int main(){
                     }
                 }
                 r+=1;
-
-            
-
             }
             else{
                 cout<<r<<endl;
                 break;
             }
-
         }
-        
-        
-
-
-
-
     }
-
-
     return 0;
 }

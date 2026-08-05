@@ -1,56 +1,46 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main(){
-    ios::sync_with_stdio(false);     
+int main() {
+    ios::sync_with_stdio(false);
     cin.tie(nullptr);
+
     int t;
-    cin>>t;
+    cin >> t;
 
-    while(t--){
+    while (t--) {
         int n;
-        cin>>n;
+        cin >> n;
         string s;
-       
-        cin>>s;
-        char ch;
-       
-      
-             int m=0;
-            
-            ch=s[0];
-            m=1;
-            for(int j=1;j<n-1;j++){
-                if(s[j-1]==s[j+1]){
-                    
-                    continue;
-                    
+        cin >> s;
 
-                }
-                if(ch!=s[j]){
-                       m+=1;
-                       ch=s[j];
-                      
-                }
-                
+        // Count original groups
+        int groups = 1;
+        for (int i = 1; i < n; i++) {
+            if (s[i] != s[i - 1])
+                groups++;
+        }
 
-                
-                
+        int ans = groups;
+
+        // Try deleting every possible character (except first and last)
+        for (int i = 1; i <= n - 2; i++) {
+            int cur = groups;
+
+            if (s[i - 1] == s[i + 1]) {
+                if (s[i] != s[i - 1])   // pattern aba
+                    cur -= 2;
             }
-          
-            
-            
-            
+            else {
+                if (s[i] != s[i - 1] && s[i] != s[i + 1]) // single-character group
+                    cur -= 1;
+            }
 
+            ans = min(ans, cur);
+        }
 
-
-
-  
-        cout<<m<<endl;
-
-
+        cout << ans << '\n';
     }
-
 
     return 0;
 }
