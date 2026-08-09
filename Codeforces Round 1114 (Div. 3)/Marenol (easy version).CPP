@@ -6,27 +6,17 @@ int main(){
     cin.tie(nullptr);
     int t;
     cin>>t;
-    bool b=false;
     while(t--){
         int n;
         cin>>n;
         string n1,n2;
         cin>>n1>>n2;
-        if(n1==n2){
-            b=true;
+        int cnta[2]={},cntb[2]={};
+        for(int i=0;i<=n;i++){
+            cnta[i%2]+=n1[i]=='1';
+            cntb[i%2]+=n2[i]=='1';
         }
-        for(int i=1;i<=n-2;i++){
-            if(n1[i-1]!=n1[i+1]){
-                char a=n1[i-1];
-                n1[i-1]=n1[i+1];
-                n1[i+1]=a;
-                if(n1==n2){
-                    b=true;
-                    break;
-                }
-                
-            }
-        }
+        cout<<(cnta[0]==cntb[0] && cnta[1]==cntb[1]? "YES":"NO")<<endl;
         
     }
          

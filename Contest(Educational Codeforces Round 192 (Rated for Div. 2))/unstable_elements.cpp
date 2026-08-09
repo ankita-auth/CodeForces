@@ -19,7 +19,7 @@
 //         int c=0;
 //         while(v.size()!=0){
 //             int r=rand()%2;
-//             switch (r)
+//             switch(r)
 //             {
 //             case 0:
 //                 for(int i=(int)v.size()-1;i>=0;i--){
